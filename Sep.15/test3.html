@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" href="../bootstrap-5.3.0/css/bootstrap.css">
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <h3>{{ pm25 }}</h3>
+        <h1>
+            <span v-if="pm25 < 50">😀</span>
+            <span v-else-if="pm25 < 100">😅</span>
+            <span v-else-if="pm25 < 150">😓</span>
+            <span v-else-if="pm25 < 200">😢</span>
+            <span v-else>😭</span>
+        </h1>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                pm25: 0
+            },
+            created: function () {
+                var vm = this;
+                setInterval(function () {
+                    vm.pm25 = (Math.random() * 249 + 1).toFixed(2);
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
+

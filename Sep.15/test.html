@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" href="../bootstrap-5.3.0/css/bootstrap.css">
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <div class="d-flex align-items-center">
+            <button @click="minus" class="btn btn-secondary me-2">-</button>
+            <span class="h3">{{ num }}</span>
+            <button @click="add" class="btn btn-secondary ms-2">+</button>
+        </div>
+        <div class="mt-3">
+            <p class="h5">單價：<span class="text-success">{{ price }}</span></p>
+            <p class="h5">總價：<span class="text-danger">{{ total }}</span></p>
+        </div>
+    </div>
+    <div id="app1" class="container mt-5">
+        <h3>{{pm25}}</h3>
+        <h1>{{ pm25 < 50 ? '😀' : pm25 < 100 ? '😅' : pm25 < 150 ? '😓' : pm25 < 200 ? '😢' : '😭' }}</h1>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                price: 10,
+                num: 1
+            },
+            computed: { 
+                total() {
+                    return this.price * this.num;
+                }
+            },
+            methods: {
+                minus() {
+                    if (this.num > 0) {
+                        this.num--;
+                    }
+                },
+                add() {
+                    this.num++;
+                }
+            }
+        });
+        var app1 = new Vue({
+            el: "#app1",
+            data: {
+                pm25: 0
+            },
+            created: function () {
+                setInterval(function () {
+                    app1.pm25 = (Math.random() * 249 + 1).toFixed(2);
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

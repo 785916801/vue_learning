@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="loginstat==false">
+            <a href="javascript:;" @click="login">登入</a>
+        </div>
+        <div v-else>
+            <h1>{{msg}}</h1>
+            <a href="javascript:;" @click="logout">登出</a>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                msg:'歡迎',
+                loginstat:false
+            },
+            methods: {
+                login(){
+                    this.loginstat=true;
+                },
+                logout(){
+                    this.loginstat=false
+                }
+            },
+        })
+    </script>
+</body>
+</html>
